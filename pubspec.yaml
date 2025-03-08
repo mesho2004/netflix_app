@@ -1,0 +1,45 @@
+name: netflix_app
+description: "A new Flutter project."
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.3
+
+dependencies:
+  cached: ^1.7.0
+  cached_network_image: ^3.2.3
+  cloud_firestore: ^5.5.1
+  cupertino_icons: ^1.0.8
+  dio: ^5.7.0
+  dotenv: ^4.2.0
+  firebase_auth: ^5.3.1
+  firebase_core: ^3.6.0
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^8.1.6
+  flutter_launcher_icons: ^0.11.0
+  fluttertoast: ^8.2.10
+  font_awesome_flutter: ^10.7.0
+  lottie: ^3.1.3
+  provider: ^6.0.5
+  shared_preferences: ^2.3.3
+  video_player: ^2.9.2
+  youtube_player_flutter: ^9.1.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/
+    - assets/Vector.png
+    - assets/Screenshot 2023-12-24 010215.png
+  # Add this configuration to generate app icons:
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon/app_icon.png" # Path to your app icon (make sure to update this with the correct path)
