@@ -13,7 +13,7 @@ Watch Trailers – Integrated YouTube/embedded video previews.
 
 Responsive UI – Mobile, tablet, and desktop friendly.
 
-Dynamic Data Fetching – Movies pulled from an external API (e.g., TMDB API).
+Dynamic Data Fetching – Movies pulled from  TMDB API
 
 Favorites & Watchlist – Save movies for later viewing.
 
