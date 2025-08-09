@@ -1,16 +1,21 @@
-# netflix_app
+# Netflix Clone
 
-A new Flutter project.
+A Netflix-inspired streaming platform built with modern web technologies. Users can browse movies, watch trailers, and explore content categories with a sleek, responsive interface.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+## 📌 Features
 
-A few resources to get you started if this is your first Flutter project:
+User Authentication – Sign up, log in, and manage accounts.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Movie Browsing – Browse by category, trending, or search.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Watch Trailers – Integrated YouTube/embedded video previews.
+
+Responsive UI – Mobile, tablet, and desktop friendly.
+
+Dynamic Data Fetching – Movies pulled from an external API (e.g., TMDB API).
+
+Favorites & Watchlist – Save movies for later viewing.
+
+Modern UI/UX – Netflix-inspired layout and animations.
+
