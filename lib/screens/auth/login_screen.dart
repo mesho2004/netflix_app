@@ -2,8 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:netflix_app/screens/home/presentation/screens/main_screen.dart';
-
-
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'register_screen.dart'; 
 
 class LoginScreen extends StatefulWidget {
@@ -19,6 +18,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
 
   String? _errorMessage;
+  bool _isLoading = false; // Added loading state
 
   @override
   void dispose() {
@@ -29,23 +29,25 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Future<void> _signIn() async {
     if (_formKey.currentState!.validate()) {
+      setState(() {
+        _isLoading = true; // Start loading
+        _errorMessage = null; // Reset error message
+      });
+
       try {
-        await FirebaseAuth.instance.signInWithEmailAndPassword(
+        await Supabase.instance.client.auth.signInWithPassword(
           email: _emailController.text,
           password: _passwordController.text,
         );
-        setState(() {
-          _errorMessage = null;
-        });
 
         if (context.mounted) {
-          Fluttertoast.showToast(msg: "Successfully signed in",backgroundColor: Colors.green);
+          Fluttertoast.showToast(msg: "Successfully signed in", backgroundColor: Colors.green);
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) =>  MainScreen()),
+            MaterialPageRoute(builder: (context) => MainScreen()),
           );
         }
-      } on FirebaseAuthException catch (e) {
+      } on AuthException catch (e) {
         setState(() {
           if (e.code == 'user-not-found') {
             _errorMessage = 'No user found for that email.';
@@ -58,6 +60,10 @@ class _LoginScreenState extends State<LoginScreen> {
       } catch (e) {
         setState(() {
           _errorMessage = 'An unexpected error occurred: $e';
+        });
+      } finally {
+        setState(() {
+          _isLoading = false; // Stop loading
         });
       }
     }
@@ -149,7 +155,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: _signIn,
+                    onPressed: _isLoading ? null : _signIn,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.red[700],
                       padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
@@ -157,14 +163,23 @@ class _LoginScreenState extends State<LoginScreen> {
                         borderRadius: BorderRadius.circular(5),
                       ),
                     ),
-                    child: const Text(
-                      'Sign In',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                    child: _isLoading
+                        ? const SizedBox(
+                            height: 20,
+                            width: 20,
+                            child: CircularProgressIndicator(
+                              color: Colors.white,
+                              strokeWidth: 2,
+                            ),
+                          )
+                        : const Text(
+                            'Sign In',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                   ),
                 ),
 

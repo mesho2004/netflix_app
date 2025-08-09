@@ -13,13 +13,14 @@ class VideoListItem extends StatefulWidget {
 
 class _VideoListItemState extends State<VideoListItem> {
   late VideoPlayerController controller;
+  bool isMuted = true;
 
   @override
   void initState() {
     super.initState();
     // Initialize the VideoPlayerController with a video URL or file
-    controller = VideoPlayerController.networkUrl(
-      Uri.parse(widget.link),
+    controller = VideoPlayerController.asset(
+      widget.link,
     )..initialize().then((_) {
         setState(() {
           controller.play();
@@ -33,6 +34,12 @@ class _VideoListItemState extends State<VideoListItem> {
     controller.dispose();
   }
 
+void toggleVolume() {
+    setState(() {
+      isMuted = !isMuted;
+      controller.setVolume(isMuted ? 0.0 : 1.0); 
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -72,9 +79,9 @@ class _VideoListItemState extends State<VideoListItem> {
                   radius: 30,
                   backgroundColor: Colors.black.withOpacity(0.5),
                   child: IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.volume_off,
+                    onPressed: toggleVolume,
+                    icon: Icon(
+                      isMuted ? Icons.volume_off : Icons.volume_up,
                       color: Colors.white,
                       size: 30,
                     ),
@@ -90,13 +97,12 @@ class _VideoListItemState extends State<VideoListItem> {
                       child: CircleAvatar(
                         radius: 30,
                         backgroundImage: NetworkImage(
-                          'https://image.tmdb.org/t/p/w1280/lW6IHrtaATxDKYVYoQGU5sh0OVm.jpg',
+                          '',
                         ),
                       ),
                     ),
                     VideoActionsWidget(
-                        icon: Icons.emoji_emotions, title: 'LOL'),
-                    VideoActionsWidget(icon: Icons.add, title: 'My List'),
+                        icon: Icons.emoji_emotions, title: 'Haha'),
                     VideoActionsWidget(icon: Icons.share, title: 'Share'),
                     VideoActionsWidget(icon: Icons.play_arrow, title: 'Play'),
                   ],

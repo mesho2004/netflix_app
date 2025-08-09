@@ -25,6 +25,7 @@ dependencies:
   lottie: ^3.1.3
   provider: ^6.0.5
   shared_preferences: ^2.3.3
+  supabase_flutter: ^2.9.1
   video_player: ^2.9.2
   youtube_player_flutter: ^9.1.1
 
@@ -38,6 +39,8 @@ flutter:
     - assets/
     - assets/Vector.png
     - assets/Screenshot 2023-12-24 010215.png
+    - assets/videoplayback.mp4
+    - assets/rickkk.mp4
   # Add this configuration to generate app icons:
 flutter_icons:
   android: true

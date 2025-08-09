@@ -5,11 +5,10 @@ class ScreenFastLaugh extends StatelessWidget {
    ScreenFastLaugh({super.key});
 
   List reel = [
-    "https://assets.mixkit.co/videos/1186/1186-720.mp4",
-    "https://assets.mixkit.co/videos/1191/1191-720.mp4",
-    "https://assets.mixkit.co/videos/1197/1197-720.mp4",
-    "https://assets.mixkit.co/videos/1185/1185-720.mp4",
-    "https://assets.mixkit.co/videos/1188/1188-720.mp4"
+    'assets/white.mp4',
+    'assets/videoplayback.mp4'
+    
+    
   ];
 
   @override
